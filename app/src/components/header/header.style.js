@@ -41,4 +41,5 @@ export const Logo = styled.h1`
     font-size: ${(props) => props.size || props.theme.text.size.Gicantic};
     margin-top: 64px;
     margin-bottom: 32px;
+    font-family: ${(props) => props.theme.text.font.family};
 `;

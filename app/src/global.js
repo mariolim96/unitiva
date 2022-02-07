@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
     font-family: 'helvetica neue', sans-serif;
