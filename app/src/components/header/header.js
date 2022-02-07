@@ -1,17 +1,17 @@
 import React from "react";
-import { Break, Nav, Container, Logo } from "./header.style";
+import { Break, Nav, Container1, Logo, LeftHeader, RightHeader } from "./header.style";
 
 function Header() {
     return (
         <>
-            <Container>
+            <Container1>
                 <Logo>STORE LOGO</Logo>
                 <Nav>
-                    <h2>LAST PRODUCT AVAILABLE</h2>
-                    <h6>5 product avaible</h6>
+                    <LeftHeader>LAST PRODUCT AVAILABLE</LeftHeader>
+                    <RightHeader>5 product avaible</RightHeader>
                 </Nav>
                 <Break />
-            </Container>
+            </Container1>
         </>
     );
 }

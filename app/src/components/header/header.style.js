@@ -1,10 +1,8 @@
 import styled from "styled-components";
-// a styled line with a shadow on top
 
-export const Container = styled.div`
-    max-width: 1168px;
-    margin: 0 auto;
-    padding: 0 20px;
+import { Container } from "../../global.js";
+export const Container1 = styled(Container)`
+    ${Container}
 `;
 
 export const Break = styled.div`
@@ -42,4 +40,21 @@ export const Logo = styled.h1`
     margin-top: 64px;
     margin-bottom: 32px;
     font-family: ${(props) => props.theme.text.font.family};
+`;
+
+export const LeftHeader = styled.h2`
+    color: ${(props) => props.theme.color.text1};
+    margin: 0 0 0 1px;
+    font-size: ${(props) => props.theme.text.size.medium};
+    @media (max-width: 524px) {
+        font-size: ${(props) => props.theme.text.size.small};
+    }
+`;
+export const RightHeader = styled.h6`
+    color: ${(props) => props.theme.color.text1};
+    margin: 0 0 0 8px;
+    font-size: ${(props) => props.theme.text.size.small};
+    @media (max-width: 524px) {
+        font-size: ${(props) => props.theme.text.size.tiny};
+    }
 `;

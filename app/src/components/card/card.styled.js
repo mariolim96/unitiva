@@ -14,8 +14,11 @@ export const StyledCard = styled.div`
     border-radius: 8px;
     height: 230px;
     position: relative;
-    width: 178px;
+    min-width: 178px;
     background-color: ${(props) => props.theme.color.card};
+    @media (max-width: 524px) {
+        margin-right: auto;
+    } ;
 `;
 export const Border = styled.div`
     width: 100%;
