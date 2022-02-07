@@ -60,8 +60,8 @@ export const Price = styled.h5`
     padding: 0;
     font-size: ${(props) => props.theme.text.size.small};
     font-family: ${(props) => props.theme.text.font.family};
-    color: ${(props) => props.theme.color.text3};
-    font-weight: ${(props) => (props.bold ? "600" : "normal")};
+    color: ${(props) => (props.red ? props.theme.color.text2 : props.theme.color.text3)};
+    font-weight: ${(props) => (props.bold ? "500" : "normal")};
 `;
 export const Button = styled.button`
     background-color: ${(props) => props.theme.color.button};

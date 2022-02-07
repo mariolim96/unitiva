@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GlobalStyles from "./global.js";
 import StoreProduct from "./pages/storeProduct.js";
 import FontStyle from "./assets/fonts/fonts.js";
+
+
 const theme = {
     color: {
         body: "#F1F1F1",
