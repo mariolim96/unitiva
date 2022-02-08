@@ -10,12 +10,19 @@ function Card({ id, name, info, quantity, price, image, added }) {
     const cartitems = useSelector(getCartItems);
     const [val, setVal] = useState(0);
     const dispatch = useDispatch();
-    useEffect(() => {}, [quantity]);
+    useEffect(() => {}, [quantity, added]);
     const add = useCallback(
         (pieces) => {
-            const newQuantity = quantity - pieces;
+            let newQuantity;
+            if (quantity == 1) {
+                newQuantity = 0;
+                pieces = 1;
+            } else {
+                newQuantity = quantity - pieces;
+            }
+
             if (newQuantity >= 0) {
-                dispatch(addItem(id, newQuantity));
+                dispatch(addItem(id, newQuantity, pieces));
             }
         },
         [dispatch, id, quantity]
@@ -23,7 +30,7 @@ function Card({ id, name, info, quantity, price, image, added }) {
 
     return (
         <StyledCard>
-            {added !== false ? <BlueCircle>{added}</BlueCircle> : ""}
+            {added > 0 ? <BlueCircle>{added}</BlueCircle> : ""}
             {quantity === 1 ? <RedCircle>LAST</RedCircle> : ""}
             <Photo src={process.env.PUBLIC_URL + image} />
             <Border />
@@ -46,7 +53,7 @@ function Card({ id, name, info, quantity, price, image, added }) {
             <Price bold>${price}</Price>
             <br></br>
             <div>
-                {quantity === 1 ? (
+                {quantity > 1 ? (
                     <FormInput
                         type="text"
                         placeholder="quantity"
@@ -66,7 +73,7 @@ function Card({ id, name, info, quantity, price, image, added }) {
                         Add
                     </Button>
                 ) : (
-                    <Button>Added all</Button>
+                    <Button disabled>Added all</Button>
                 )}
             </div>
         </StyledCard>

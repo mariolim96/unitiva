@@ -7,10 +7,28 @@ const Initial_State = {
                 id: "1",
                 name: "Ray-Ban wayfarer",
                 info: "RBN82 83 95",
-                quantity: 1,
+                quantity: 21,
                 price: 10,
                 image: "1.png",
-                added: false,
+                added: 0,
+            },
+            2: {
+                id: "2",
+                name: "Ray-Ban wayfarer",
+                info: "RBN82 83 95",
+                quantity: 11,
+                price: 10,
+                image: "1.png",
+                added: 0,
+            },
+            3: {
+                id: "3",
+                name: "Ray-Ban wayfarer",
+                info: "RBN82 83 95",
+                quantity: 11,
+                price: 10,
+                image: "1.png",
+                added: 0,
             },
         },
     },
@@ -27,17 +45,19 @@ export default (state = Initial_State, action) => {
         //adding item to cart and updating quantity
         case ADD:
             console.log(action.payload);
+            const { id, quantity, pieces } = action.payload;
             return {
                 ...state,
-                cart: [...state.cart, state.items.byId[action.payload.id]],
-                total: state.total + state.items.byId[action.payload.id].price,
+                cart: [...state.cart, state.items.byId[id]],
+                total: state.total + state.items.byId[id].price,
                 items: {
                     ...state.items,
                     byId: {
                         ...state.items.byId,
                         [action.payload.id]: {
-                            ...state.items.byId[action.payload.id],
-                            quantity: action.payload.quantity,
+                            ...state.items.byId[id],
+                            quantity: quantity,
+                            added: Number(state.items.byId[id].added) + Number(pieces),
                         },
                     },
                 },
@@ -51,13 +71,6 @@ export default (state = Initial_State, action) => {
     }
 };
 
-// total: state.total + state.items.byId[action.payload.id].price,
-//                 items: {
-//                     ...state.items,
-//                     byId: {
-//                         ...state.items.byId,
-//                         quantity: action.payload.quantity,
-//                     },},
 //selectors
 export const getCartItems = (state) => state.store.cart;
 export const getCartTotal = (state) => state.store.total;

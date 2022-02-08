@@ -69,7 +69,6 @@ export const Button = styled.button`
     display: inline-block;
     overflow: hidden;
     outline: none;
-    background-color: ${(props) => props.theme.color.button};
     color: white;
     border-radius: 5px;
     border: none;
@@ -81,16 +80,21 @@ export const Button = styled.button`
     float: right;
     margin: 6px 6px;
     height: 24px;
-    transition: all 0.5s;
-    text-decoration: none;
+    background-color: ${(props) => props.theme.color.button};
+    disabled: true;
     cursor: pointer;
-    &:hover {
+    transition: all 0.5s;
+    &:hover:enabled {
         background: #2c3e50;
         filter: brightness(115%);
     }
-    &:active {
+    &:active:enabled {
         background: #2c3e50;
         top: 2px;
+    }
+    &:disabled {
+        background-color: ${(props) => props.theme.color.buttonB};
+        cursor: not-allowed;
     }
 `;
 
@@ -123,6 +127,7 @@ export const Circle = styled.div`
     color: ${(props) => props.theme.color.body};
     text-align: center;
     line-height: 26px;
+    margin: 0 0 0 0;
 `;
 
 export const BlueCircle = styled(Circle)`

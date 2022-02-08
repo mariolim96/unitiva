@@ -12,9 +12,11 @@ const theme = {
         text2: "#C16565",
         text3: "#6E6E6E",
         button: "#5F729D",
+        buttonB: "#999999",
         buttonDisabled: "#999999",
         circle: "#B95151",
         border: "#C2C2C2",
+        borderF: "#9B9B9B",
         card: "#FFFFFF",
     },
     text: {

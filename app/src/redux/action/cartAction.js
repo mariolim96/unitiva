@@ -1,5 +1,5 @@
 import { CartKeys } from "../type";
-export const addItem = (id, quantity) => {
+export const addItem = (id, quantity,pieces) => {
     console.log(id, quantity);
 
     return {
@@ -7,6 +7,7 @@ export const addItem = (id, quantity) => {
         payload: {
             id,
             quantity,
+            pieces,
         },
     };
 };
