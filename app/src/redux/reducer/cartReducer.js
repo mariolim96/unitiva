@@ -5,8 +5,8 @@ const Initial_State = {
         byId: {
             1: {
                 id: "1",
-                name: "Product 1",
-                info: "Product 1 info",
+                name: "Ray-Ban wayfarer",
+                info: "RBN82 83 95",
                 quantity: 1,
                 price: 10,
                 image: "1.png",
@@ -22,16 +22,46 @@ const Initial_State = {
 // eslint-disable-next-line
 export default (state = Initial_State, action) => {
     const { ADD, DELETE, CLEAR } = CartKeys;
+    console.log(action);
     switch (action.type) {
+        //adding item to cart and updating quantity
+        case ADD:
+            console.log(action.payload);
+            return {
+                ...state,
+                cart: [...state.cart, state.items.byId[action.payload.id]],
+                total: state.total + state.items.byId[action.payload.id].price,
+                items: {
+                    ...state.items,
+                    byId: {
+                        ...state.items.byId,
+                        [action.payload.id]: {
+                            ...state.items.byId[action.payload.id],
+                            quantity: action.payload.quantity,
+                        },
+                    },
+                },
+            };
+        //removing item from cart and updating quantity
+        case DELETE:
+            return state;
+
         default:
             return state;
     }
 };
 
+// total: state.total + state.items.byId[action.payload.id].price,
+//                 items: {
+//                     ...state.items,
+//                     byId: {
+//                         ...state.items.byId,
+//                         quantity: action.payload.quantity,
+//                     },},
 //selectors
-export const getCartItems = (state) => state.cart;
-export const getCartTotal = (state) => state.total;
-export const getItem = (state) => state.cart.items;
+export const getCartItems = (state) => state.store.cart;
+export const getCartTotal = (state) => state.store.total;
+export const getItem = (state) => state.store.items;
 // export const getFilmsList = (state) => state.List.listCreating.filmList;
 // export const getTitleList = (state) => state.List.listCreating.title;
 // export const getDescriptionList = (state) =>

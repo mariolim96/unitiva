@@ -14,7 +14,7 @@ export const StyledCard = styled.div`
     border-radius: 8px;
     height: 230px;
     position: relative;
-    min-width: 178px;
+    min-width: 174px;
     background-color: ${(props) => props.theme.color.card};
     @media (max-width: 524px) {
         margin-right: auto;
@@ -36,50 +36,61 @@ export const Photo = styled.img`
     z-index: 0;
 `;
 export const Title = styled.h3`
-    font-family: ${(props) => props.theme.text.font.family};
-    margin-top: 4px;
+    font-family: ${(props) => props.theme.text.font.corporateB};
+    margin-top: 8px;
     margin-left: 6px;
     margin-bottom: 0px;
     padding: 0;
     font-size: ${(props) => props.theme.text.size.medium};
-    color: ${(props) => props.theme.color.text3};
-    font-weight: normal;
-`;
-export const Info = styled.h4`
-    font-family: ${(props) => props.theme.text.font.family};
-    margin: 0px auto 6px 6px;
-    font-size: ${(props) => props.theme.text.size.small};
-    color: ${(props) => props.theme.color.text3};
+    color: ${(props) => props.theme.color.text1};
     font-weight: normal;
 `;
 
+export const Info = styled.h4`
+    font-family: ${(props) => props.theme.text.font.corporate};
+    margin: 0px auto 6px 6px;
+    font-size: ${(props) => props.theme.text.size.small};
+    color: ${(props) => props.theme.color.text3};
+    font-weight: 200;
+`;
+
 export const Price = styled.h5`
-    font-family: ${(props) => props.theme.text.font.family};
+    font-family: ${(props) => props.theme.text.font.corporate};
     margin: 4px 1px 4px 6px;
     display: inline-block;
     padding: 0;
-    font-size: ${(props) => props.theme.text.size.small};
-    font-family: ${(props) => props.theme.text.font.family};
+    font-size: ${(props) => (props.tiny ? props.theme.text.size.tiny : props.theme.text.size.small)};
+    font-family: ${(props) => props.theme.text.font.corporate};
     color: ${(props) => (props.red ? props.theme.color.text2 : props.theme.color.text3)};
-    font-weight: ${(props) => (props.bold ? "500" : "normal")};
+    font-weight: ${(props) => (props.bold ? "900" : "normal")};
 `;
 export const Button = styled.button`
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    outline: none;
     background-color: ${(props) => props.theme.color.button};
     color: white;
     border-radius: 5px;
     border: none;
     padding: 6px 8px;
     font-size: ${(props) => props.theme.text.size.small};
-    font-family: ${(props) => props.theme.text.font.family};
-    fotn-weight: 200;
+    font-family: ${(props) => props.theme.text.font.corporate};
+    font-weight: 100;
     min-width: 44px;
     float: right;
     margin: 6px 6px;
     height: 24px;
-    transition: all 0.5s ease-in-out;
-    trasform: scale(1.85);
+    transition: all 0.5s;
+    text-decoration: none;
+    cursor: pointer;
     &:hover {
+        background: #2c3e50;
         filter: brightness(115%);
+    }
+    &:active {
+        background: #2c3e50;
+        top: 2px;
     }
 `;
 
@@ -99,7 +110,6 @@ export const FormInput = styled.input`
     }
 `;
 
-// create a circle with black border positioned on top right corner of the photo
 export const Circle = styled.div`
     position: absolute;
     height: 26px;
@@ -109,7 +119,7 @@ export const Circle = styled.div`
     border: 1px solid ${(props) => props.theme.color.buttonDisabled};
     top: -12px;
     font-size: ${(props) => props.theme.text.size.tiny};
-    font-family: ${(props) => props.theme.text.font.family};
+    font-family: ${(props) => props.theme.text.font.corporate};
     color: ${(props) => props.theme.color.body};
     text-align: center;
     line-height: 26px;
@@ -135,47 +145,3 @@ export const RedCircle = styled(Circle)`
     font-weight: 400;
     animation: ${lighing} 2s linear infinite;
 `;
-
-export const Bu = styled.button`
-    display: inline-flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    position: relative;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    outline: 0px;
-    border: 0px;
-    margin: 0px;
-    cursor: pointer;
-    user-select: none;
-    vertical-align: middle;
-    appearance: none;
-    text-decoration: none;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 500;
-    font-size: 0.875rem;
-    line-height: 1.75;
-    letter-spacing: 0.02857em;
-    text-transform: uppercase;
-    min-width: 64px;
-    padding: 6px 16px;
-    border-radius: 4px;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-        box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-        color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    color: rgba(0, 0, 0, 0.87);
-    background-color: rgb(144, 202, 249);
-    box-shadow: rgb(0 0 0 / 20%) 0px 3px 1px -2px, rgb(0 0 0 / 14%) 0px 2px 2px 0px, rgb(0 0 0 / 12%) 0px 1px 5px 0px;
-`;
-
-// export const circle = styled.div`
-//     width: 100%;
-//     height: 100%;
-//     border-radius: 50%;
-//     background-color: ${(props) => props.theme.color.body};
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-// `;

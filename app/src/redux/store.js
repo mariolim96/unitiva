@@ -6,7 +6,7 @@ import cartReducer from "./reducer/cartReducer";
 const composeEnhancers = (typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const rootReducer = combineReducers({
-    cart: cartReducer,
+    store: cartReducer,
 });
 
 //store and combinereducer

@@ -8,7 +8,7 @@ function Header() {
                 <Logo>STORE LOGO</Logo>
                 <Nav>
                     <LeftHeader>LAST PRODUCT AVAILABLE</LeftHeader>
-                    <RightHeader>5 product avaible</RightHeader>
+                    <RightHeader>5 product available</RightHeader>
                 </Nav>
                 <Break />
             </Container1>

@@ -4,14 +4,13 @@ import GlobalStyles from "./global.js";
 import StoreProduct from "./pages/storeProduct.js";
 import FontStyle from "./assets/fonts/fonts.js";
 
-
 const theme = {
     color: {
         body: "#F1F1F1",
         text: "#313131",
         text1: "#555555",
         text2: "#C16565",
-        text3: "#565656",
+        text3: "#6E6E6E",
         button: "#5F729D",
         buttonDisabled: "#999999",
         circle: "#B95151",
@@ -20,15 +19,16 @@ const theme = {
     },
     text: {
         size: {
-            tiny: "0.55rem",
+            tiny: "0.6rem",
             small: "0.7rem",
             medium: "1rem",
             large: "1.2rem",
             huge: "1.5rem",
-            gigantic: "2,5rem",
+            gigantic: "5,5rem",
         },
         font: {
-            family: "Corporate S BQ",
+            corporate: "corporate",
+            corporateB: "corporateB",
         },
     },
 };

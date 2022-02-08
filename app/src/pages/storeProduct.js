@@ -9,7 +9,7 @@ import { useStore } from "react-redux";
 const StoreProduct = () => {
     const items = useSelector(getItem);
     const store = useStore();
-    console.log(store.getState(), items);
+    // console.log(store.getState(), items);
     const itemCollection = Object.keys(items.byId).map((item) => {
         return <Card key={item} {...items.byId[item]} />;
     });

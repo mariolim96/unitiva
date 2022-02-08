@@ -1,20 +1,26 @@
-import React from "react";
-import {
-    Bu,
-    StyledCard,
-    Photo,
-    Button,
-    Title,
-    Info,
-    Price,
-    Border,
-    FormInput,
-    BlueCircle,
-    RedCircle,
-} from "./card.styled";
-
+import React, { useEffect } from "react";
+import { StyledCard, Photo, Button, Title, Info, Price, Border, FormInput, BlueCircle, RedCircle } from "./card.styled";
+import { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { CartKeys } from "../../redux/type";
+import { addItem } from "../../redux/action/cartAction";
+import { useSelector } from "react-redux";
+import { getCartItems, getItem } from "../../redux/reducer/cartReducer";
 function Card({ id, name, info, quantity, price, image, added }) {
-    console.log(image);
+    const cartitems = useSelector(getCartItems);
+    const [val, setVal] = useState(0);
+    const dispatch = useDispatch();
+    useEffect(() => {}, [quantity]);
+    const add = useCallback(
+        (pieces) => {
+            const newQuantity = quantity - pieces;
+            if (newQuantity >= 0) {
+                dispatch(addItem(id, newQuantity));
+            }
+        },
+        [dispatch, id, quantity]
+    );
+
     return (
         <StyledCard>
             {added !== false ? <BlueCircle>{added}</BlueCircle> : ""}
@@ -24,14 +30,44 @@ function Card({ id, name, info, quantity, price, image, added }) {
             <Title>{name}</Title>
             <Info>{info}</Info>
             <Price>Qty: {quantity}</Price>
-            {quantity === 1 ? <Price red>last item</Price> : quantity <= 3 ? <Price>3 left</Price> : ""}
+            {quantity === 1 ? (
+                <Price red tiny>
+                    last item
+                </Price>
+            ) : quantity <= 3 ? (
+                <Price red tiny>
+                    last pieces available
+                </Price>
+            ) : (
+                ""
+            )}
             <br></br>
             <Price>Price: </Price>
-            <Price bold>$134.00</Price>
+            <Price bold>${price}</Price>
             <br></br>
             <div>
-                <FormInput type="text" placeholder="Enter qty" />
-                <Button>Add</Button>
+                {quantity === 1 ? (
+                    <FormInput
+                        type="text"
+                        placeholder="quantity"
+                        onChange={(e) => {
+                            setVal(e.target.value);
+                        }}
+                    />
+                ) : (
+                    ""
+                )}
+                {quantity > 0 ? (
+                    <Button
+                        onClick={(e) => {
+                            add(val);
+                        }}
+                    >
+                        Add
+                    </Button>
+                ) : (
+                    <Button>Added all</Button>
+                )}
             </div>
         </StyledCard>
     );

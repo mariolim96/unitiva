@@ -36,14 +36,16 @@ export const Logo = styled.h1`
     text-align: center;
     font-stretch: expanded;
     color: ${(props) => props.theme.color.text};
-    font-size: ${(props) => props.size || props.theme.text.size.Gicantic};
+    font-size: 36px;
     margin-top: 64px;
     margin-bottom: 32px;
-    font-family: ${(props) => props.theme.text.font.family};
+    font-family: ${(props) => props.theme.text.font.corporateB};
+    font-weight: 900;
 `;
 
 export const LeftHeader = styled.h2`
     color: ${(props) => props.theme.color.text1};
+    font-family: ${(props) => props.theme.text.font.corporateB};
     margin: 0 0 0 1px;
     font-size: ${(props) => props.theme.text.size.medium};
     @media (max-width: 524px) {
@@ -51,9 +53,11 @@ export const LeftHeader = styled.h2`
     }
 `;
 export const RightHeader = styled.h6`
+    font-family: ${(props) => props.theme.text.font.corporate}
     color: ${(props) => props.theme.color.text1};
     margin: 0 0 0 8px;
     font-size: ${(props) => props.theme.text.size.small};
+    font-weight: normal;
     @media (max-width: 524px) {
         font-size: ${(props) => props.theme.text.size.tiny};
     }
