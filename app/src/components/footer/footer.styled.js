@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../../global";
+
 export const FooterContainer = styled.div`
     position: fixed;
     left: 0;

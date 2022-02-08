@@ -64,7 +64,29 @@ export default (state = Initial_State, action) => {
             };
         //removing item from cart and updating quantity
         case DELETE:
-            return state;
+            return {
+                ...state,
+                cart: [...state.cart.filter((item) => item.id !== action.payload.id)],
+                total: state.total - state.items.byId[action.payload.id].price,
+                items: {
+                    ...state.items,
+                    byId: {
+                        ...state.items.byId,
+                        [action.payload.id]: {
+                            ...state.items.byId[action.payload.id],
+                            quantity: state.items.byId[action.payload.id].quantity + action.payload.pieces,
+                            added: state.items.byId[action.payload.id].added - action.payload.pieces,
+                        },
+                    },
+                },
+            };
+        //clearing cart
+        case CLEAR:
+            return {
+                ...state,
+                cart: [],
+                total: 0,
+            };
 
         default:
             return state;
