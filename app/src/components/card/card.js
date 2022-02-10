@@ -1,33 +1,32 @@
 import React, { useEffect } from "react";
-import { StyledCard, Photo, Button, Title, Info, Price, Border, FormInput, BlueCircle, RedCircle } from "./card.styled";
+import { StyledCard, Photo, Button, Title, Info, Price, Border, BlueCircle, RedCircle, Select } from "./card.styled";
 import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { CartKeys } from "../../redux/type";
 import { addItem } from "../../redux/action/cartAction";
 import { useSelector } from "react-redux";
-import { getCartItems, getItem } from "../../redux/reducer/cartReducer";
-function Card({ id, name, info, quantity, price, image, added }) {
-    const cartitems = useSelector(getCartItems);
-    const [val, setVal] = useState(0);
+import { getMeasures, getAddedMeasures, getPcsMeasures } from "../../redux/reducer/cartReducer";
+function Card({ id, name, info, price, image }) {
+    const measures = useSelector(getMeasures);
+    const [val, setVal] = useState(-1);
     const dispatch = useDispatch();
-    useEffect(() => {}, [quantity, added]);
-    const add = useCallback(
-        (pieces) => {
-            let newQuantity;
-            if (quantity == 1) {
-                newQuantity = 0;
-                pieces = 1;
-            } else {
-                newQuantity = quantity - pieces;
-            }
+    const quantity = useSelector(getPcsMeasures(id));
+    const added = useSelector(getAddedMeasures(id));
+    console.log(measures[id]);
+    useEffect(() => {}, [quantity, added, measures]);
 
-            if (newQuantity >= 0) {
-                dispatch(addItem(id, newQuantity, pieces));
-            }
-        },
-        [dispatch, id, quantity]
-    );
+    const add = useCallback(() => {
+        dispatch(addItem(id, val));
+    }, [dispatch, id, val]);
 
+    const measure = Object.keys(measures[id]).map((item) => {
+        return (
+            <>
+                <option key={item} value={item} disabled={measures[id][item].pcs <= 0 ? true : false}>
+                    {item}({measures[id][item].pcs}pcs)
+                </option>
+            </>
+        );
+    });
     return (
         <StyledCard>
             {added > 0 ? <BlueCircle>{added}</BlueCircle> : ""}
@@ -53,28 +52,28 @@ function Card({ id, name, info, quantity, price, image, added }) {
             <Price bold>${price}</Price>
             <br></br>
             <div>
-                {quantity > 1 ? (
-                    <FormInput
-                        type="text"
-                        placeholder="quantity"
+                {quantity > 0 ? (
+                    <Select
                         onChange={(e) => {
                             setVal(e.target.value);
                         }}
-                    />
+                    >
+                        <option value={-1} className="base">
+                            Size
+                        </option>
+                        {measure}
+                    </Select>
                 ) : (
                     ""
                 )}
-                {quantity > 0 ? (
-                    <Button
-                        onClick={(e) => {
-                            add(val);
-                        }}
-                    >
-                        Add
-                    </Button>
-                ) : (
-                    <Button disabled>Added all</Button>
-                )}
+                <Button
+                    disabled={val < 0 || measures[id][val].pcs < 1}
+                    onClick={(e) => {
+                        add(val);
+                    }}
+                >
+                    {quantity > 0 ? "Add" : "Added all"}
+                </Button>
             </div>
         </StyledCard>
     );

@@ -1,8 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
+
 export const Container = styled.div`
-    max-width: 1168px;
-    margin: 0 auto;
+    width: 1168px;
+    margin: 0 100px;
     padding: 0 20px;
 `;
 const GlobalStyles = createGlobalStyle`
@@ -40,6 +41,15 @@ export const Button = styled.button`
         background: #2c3e50;
         top: 2px;
     }
+`;
+
+export const Header3 = styled.h3`
+    font-family: ${(props) => props.theme.text.font.corporateB};
+    margin: 0px;
+    padding: 0;
+    font-size: ${(props) => props.theme.text.size.medium};
+    color: ${(props) => props.theme.color.text1};
+    font-weight: normal;
 `;
 
 export default GlobalStyles;

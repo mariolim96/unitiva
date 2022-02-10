@@ -7,7 +7,8 @@ export const FooterContainer = styled.div`
     width: 100%;
     height: 84px;
     background-color: white;
-    border-top: 1px solid ${(props) => props.theme.color.borderF};
+    border-top: 1px solid ${(props) => props.theme.color.borderF
+    };
 `;
 
 export const Info = styled.h4`

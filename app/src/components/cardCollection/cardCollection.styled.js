@@ -4,11 +4,11 @@ import { Container } from "../../global";
 export const ContainerCard = styled(Container)`
     ${Container}
     position: relative;
+    margin: 0px 52px;
     display: inline-flex;
     flex-direction: row;
-    justify-content: space-between;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: center;
     @media (max-width: 768px) {
         justify-content: center;
     }

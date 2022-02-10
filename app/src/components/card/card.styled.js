@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-
+import { Header3 } from "../../global";
 const lighten = (value) => styled.css`
     filter: brightness(${value + 1});
 `;
@@ -35,15 +35,10 @@ export const Photo = styled.img`
     background-image: ${(props) => `url(${props.src})`};
     z-index: 0;
 `;
-export const Title = styled.h3`
-    font-family: ${(props) => props.theme.text.font.corporateB};
+export const Title = styled(Header3)`
     margin-top: 8px;
     margin-left: 6px;
     margin-bottom: 0px;
-    padding: 0;
-    font-size: ${(props) => props.theme.text.size.medium};
-    color: ${(props) => props.theme.color.text1};
-    font-weight: normal;
 `;
 
 export const Info = styled.h4`
@@ -81,7 +76,6 @@ export const Button = styled.button`
     margin: 6px 6px;
     height: 24px;
     background-color: ${(props) => props.theme.color.button};
-    disabled: true;
     cursor: pointer;
     transition: all 0.5s;
     &:hover:enabled {
@@ -149,4 +143,29 @@ export const RedCircle = styled(Circle)`
     left: -12px;
     font-weight: 400;
     animation: ${lighing} 2s linear infinite;
+`;
+
+export const Select = styled.select`
+    background: white;
+    color: gray;
+    border-radius: 5px;
+    margin: 6px 1px 6px 6px;
+    height: 22px;
+    width: 80px;
+    padding: 0px 0px;
+    border: 1px solid #cfcfcf;
+    font-size: ${(props) => props.theme.text.size.tiny};
+    padding-left: 8px;
+    appearance: none;
+    option {
+        color: black;
+        background: white;
+        display: flex;
+        white-space: pre;
+        min-height: 20px;
+        padding: 0px 2px 1px;
+        &.base:enabled {
+            display: none;
+        }
+    }
 `;

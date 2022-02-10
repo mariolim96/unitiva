@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { Container } from "../../global.js";
 export const Container1 = styled(Container)`
-    ${Container}
+    padding: 0;
 `;
 
 export const Break = styled.div`
@@ -18,17 +18,6 @@ export const Nav = styled.nav`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2px;
-    h2,
-    h6 {
-        margin: 0 0 0 1px;
-        color: ${(props) => props.theme.color.text1};
-    }
-    h6 {
-        font-size: 0.8rem;
-    }
-    h2 {
-        font-size: 1.4rem;
-    }
 `;
 
 export const Logo = styled.h1`
@@ -47,14 +36,14 @@ export const LeftHeader = styled.h2`
     color: ${(props) => props.theme.color.text1};
     font-family: ${(props) => props.theme.text.font.corporateB};
     margin: 0 0 0 1px;
-    font-size: ${(props) => props.theme.text.size.medium};
+    font-size: ${(props) => props.theme.text.size.xlarge};
     @media (max-width: 524px) {
         font-size: ${(props) => props.theme.text.size.small};
     }
 `;
 export const RightHeader = styled.h6`
-    font-family: ${(props) => props.theme.text.font.corporate}
-    color: ${(props) => props.theme.color.text1};
+    font-family: ${(props) => props.theme.text.font.corporate};
+    color: ${(props) => props.theme.color.righth};
     margin: 0 0 0 8px;
     font-size: ${(props) => props.theme.text.size.small};
     font-weight: normal;

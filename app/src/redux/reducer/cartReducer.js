@@ -1,38 +1,46 @@
 import { CartKeys } from "../type";
-
+import _ from "lodash";
 const Initial_State = {
     items: {
         byId: {
             1: {
                 id: "1",
                 name: "Ray-Ban wayfarer",
-                info: "RBN82 83 95",
-                quantity: 21,
+                info: "RBN82 84 95",
                 price: 10,
                 image: "1.png",
-                added: 0,
             },
             2: {
                 id: "2",
                 name: "Ray-Ban wayfarer",
-                info: "RBN82 83 95",
-                quantity: 11,
+                info: "RBN82 56 95",
                 price: 10,
                 image: "1.png",
-                added: 0,
             },
             3: {
                 id: "3",
                 name: "Ray-Ban wayfarer",
-                info: "RBN82 83 95",
-                quantity: 11,
+                info: "RBN82 87 95",
                 price: 10,
                 image: "1.png",
-                added: 0,
             },
         },
     },
-    cart: [],
+    //id of sunglasses with quantity and measures
+    measures: {
+        1: {
+            50: { size: 50, pcs: 5, added: 0 },
+            52: { size: 52, pcs: 1, added: 0 },
+        },
+        3: {
+            50: { size: 50, pcs: 1, added: 0 },
+            52: { size: 52, pcs: 4, added: 0 },
+        },
+        2: {
+            50: { size: 50, pcs: 1, added: 0 },
+            52: { size: 52, pcs: 4, added: 0 },
+        },
+    },
     total: 0,
 };
 
@@ -40,24 +48,22 @@ const Initial_State = {
 // eslint-disable-next-line
 export default (state = Initial_State, action) => {
     const { ADD, DELETE, CLEAR } = CartKeys;
-    console.log(action);
+
     switch (action.type) {
         //adding item to cart and updating quantity
+
         case ADD:
-            console.log(action.payload);
-            const { id, quantity, pieces } = action.payload;
             return {
                 ...state,
-                cart: [...state.cart, state.items.byId[id]],
-                total: state.total + state.items.byId[id].price,
-                items: {
-                    ...state.items,
-                    byId: {
-                        ...state.items.byId,
-                        [action.payload.id]: {
-                            ...state.items.byId[id],
-                            quantity: quantity,
-                            added: Number(state.items.byId[id].added) + Number(pieces),
+                total: state.total + state.items.byId[action.payload.id].price,
+                measures: {
+                    ...state.measures,
+                    [action.payload.id]: {
+                        ...state.measures[action.payload.id],
+                        [action.payload.size]: {
+                            ...state.measures[action.payload.id][action.payload.size],
+                            pcs: state.measures[action.payload.id][action.payload.size].pcs - 1,
+                            added: state.measures[action.payload.id][action.payload.size].added + 1,
                         },
                     },
                 },
@@ -66,53 +72,44 @@ export default (state = Initial_State, action) => {
         case DELETE:
             return {
                 ...state,
-                cart: [...state.cart.filter((item) => item.id !== action.payload.id)],
                 total: state.total - state.items.byId[action.payload.id].price,
-                items: {
-                    ...state.items,
-                    byId: {
-                        ...state.items.byId,
-                        [action.payload.id]: {
-                            ...state.items.byId[action.payload.id],
-                            quantity: state.items.byId[action.payload.id].quantity + action.payload.pieces,
-                            added: state.items.byId[action.payload.id].added - action.payload.pieces,
+                measures: {
+                    ...state.measures,
+                    [action.payload.id]: {
+                        ...state.measures[action.payload.id],
+                        [action.payload.size]: {
+                            ...state.measures[action.payload.id][action.payload.size],
+                            pcs: state.measures[action.payload.id][action.payload.size].pcs + 1,
+                            added: state.measures[action.payload.id][action.payload.size].added - 1,
                         },
                     },
                 },
             };
-        //clearing cart
+        //clearing all added values of measures to 0
         case CLEAR:
             return {
                 ...state,
-                cart: [],
-                total: 0,
+                measures: action.payload,
             };
-
         default:
             return state;
     }
 };
 
 //selectors
-export const getCartItems = (state) => state.store.cart;
+export const cart = (state) => {
+    const res = _.map(
+        state.store.items.byId,
+        (item, i) => _.map(state.store.measures[i], (id) => Object.assign({}, item, id)).flat()
+        // .filter((item) => item.added >= 0)
+    );
+    return res.flat().filter((item) => item.added >= 0);
+};
 export const getCartTotal = (state) => state.store.total;
 export const getItem = (state) => state.store.items;
-// export const getFilmsList = (state) => state.List.listCreating.filmList;
-// export const getTitleList = (state) => state.List.listCreating.title;
-// export const getDescriptionList = (state) =>
-//   state.List.listCreating.description;
-// export const getPrivateList = (state) => state.List.listCreating.private;
-
-// export const getListLists = (state) => state.List.listLists;
-// export const getListSelected = (state) => state.List.listSelected;
-// export const getFilms = (state) => state.List.films;
-// export const filteredFilms = (state) => {
-//   return state.List.listSelected[
-//     Object.keys(state.List.listSelected)[0]
-//   ].films.reduce((accum, film) => {
-//     accum[film] = state.List.films[film] ? state.List.films[film] : {};
-//     return accum;
-//   }, {});
-// };
-// export const getWatchlist = (state) => state.List.watchlist;
-// export const getFavorites = (state) => state.List.favourites;
+export const getMeasures = (state) => state.store.measures;
+export const getPcsMeasures = (id) => (state) =>
+    _.map(state.store.measures[id], (measure) => measure.pcs).reduce((a, b) => a + b);
+export const getAddedMeasures = (id) => (state) =>
+    _.map(state.store.measures[id], (measure) => measure.added).reduce((a, b) => a + b);
+export const totalProducts = (state) => _.map(state.store.items.byId).length;
