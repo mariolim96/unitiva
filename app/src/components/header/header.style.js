@@ -3,13 +3,15 @@ import styled from "styled-components";
 import { Container } from "../../theme/global.js";
 export const Container1 = styled(Container)`
     padding: 0;
+    margin: 0 100px;
 `;
 
 export const Break = styled.div`
     width: 100%;
     height: 1px;
     background-color: #e6e6e6;
-    margin: 0;
+    margin: 0px 0px;
+
     border-bottom: 2px groove rgba(178, 178, 178, 0.56);
 `;
 

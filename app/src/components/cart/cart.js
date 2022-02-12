@@ -15,16 +15,19 @@ import {
 } from "./cart.styled";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMeasures, getItem, cart } from "../../redux/reducer/cartReducer";
+import { getMeasures, getItem, cart, totalPrice, totalAddedProducts } from "../../redux/reducer/cartReducer";
 import _ from "lodash";
 import { nanoid } from "nanoid";
 import { IconArrow } from "./cart.styled";
+import { CartKeys } from "../../redux/type";
+import { operationHandler } from "../../redux/action/cartAction";
 const Cart = () => {
     const dispatch = useDispatch();
-    const measures = useSelector(getMeasures);
-    const items = useSelector(getItem);
     const cartItems = useSelector(cart);
-    // console.log(cart);
+    const price = useSelector(totalPrice);
+    const totalProducts = useSelector(totalAddedProducts);
+    console.log(price);
+    useEffect(() => {}, [cartItems]);
     const cartCategories = ["Model", "SKU", "Size", "Qty", "Price"].map((item, i) => {
         return (
             <CartItem key={item} title>
@@ -43,35 +46,40 @@ const Cart = () => {
                     <CartIteminfo>{item.name}</CartIteminfo>
                     <TextButton
                         mr
-                        data-set={i}
-                        
+                        data-id={i}
+                        onClick={(e) => {
+                            let idx = e.target.dataset.id;
+                            dispatch(operationHandler(CartKeys.DELETE, cartItems[idx].id, cartItems[idx].size));
+                        }}
                     >
-                        <RemoveIcon size={18} />
-                        <CartItemLeftInfo>Remove</CartItemLeftInfo>
+                        <RemoveIcon data-id={i} size={18} />
+                        <CartItemLeftInfo data-id={i}>Remove</CartItemLeftInfo>
                     </TextButton>
                 </CartItem>
                 <CartItem>
                     <CartIteminfo>{item.info}</CartIteminfo>
                 </CartItem>
                 <CartItem>
-                    <CartIteminfo>{item.added}</CartIteminfo>
+                    <CartIteminfo>{item.size}</CartIteminfo>
+                </CartItem>
+                <CartItem>
                     <TextButton
-                        data-set={i}
+                        data-id={i}
+                        data-size={item.size}
                         onClick={(e) => {
-                            console.log(e, e.target.getAttribute("data-set"));
+                            let idx = e.target.getAttribute("data-id");
+                            dispatch(operationHandler(CartKeys.ADD, cartItems[idx].id, cartItems[idx].size));
                         }}
                     >
-                        <AddIcon size={18} data-set={i} />
-                        <CartItemLeftInfo blue data-set={i}>
+                        <AddIcon size={18} data-id={i} />
+                        <CartItemLeftInfo blue data-id={i}>
                             Add
                         </CartItemLeftInfo>
                     </TextButton>
+                    <CartIteminfo>{item.added}</CartIteminfo>
                 </CartItem>
                 <CartItem>
-                    <CartIteminfo>{item.price * item.added}</CartIteminfo>
-                </CartItem>
-                <CartItem>
-                    {item.size}
+                    {item.price * item.added}
                     <CartIteminfo></CartIteminfo>
                 </CartItem>
             </>
@@ -87,12 +95,12 @@ const Cart = () => {
             </CartGrid>
             <TextWrapper>
                 <Header4>Total pieces:&nbsp;&nbsp;</Header4>
-                <Header4 bold>354</Header4>
+                <Header4 bold>{totalProducts}</Header4>
             </TextWrapper>
             <TextWrapper clear="right" padding="36px">
                 <Header4 dGrey>Price: &nbsp; </Header4>
                 <Header4 bold dGrey>
-                    123
+                    {price}
                 </Header4>
             </TextWrapper>
         </CartContainer>

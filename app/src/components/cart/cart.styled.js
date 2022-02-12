@@ -11,7 +11,8 @@ export const CartContainer = styled(Container)`
     border-bottom: 1px solid ${(props) => props.theme.color.border};
     border-top: 1px solid ${(props) => props.theme.color.border};
     border-radius: 8px;
-    margin: 20px 100px;
+    margin: 20px 100px 80px 100px;
+
     padding: 0px 1px;
     box-sizing: border-box;
     overflow: hidden;

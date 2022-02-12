@@ -98,18 +98,50 @@ export default (state = Initial_State, action) => {
 
 //selectors
 export const cart = (state) => {
-    const res = _.map(
-        state.store.items.byId,
-        (item, i) => _.map(state.store.measures[i], (id) => Object.assign({}, item, id)).flat()
-        // .filter((item) => item.added >= 0)
+    const res = _.map(state.store.items.byId, (item, i) =>
+        _.map(state.store.measures[i], (id) => Object.assign({}, item, id)).flat()
     );
-    return res.flat().filter((item) => item.added >= 0);
+    return res.flat().filter((item) => item.added > 0);
 };
 export const getCartTotal = (state) => state.store.total;
 export const getItem = (state) => state.store.items;
 export const getMeasures = (state) => state.store.measures;
+
 export const getPcsMeasures = (id) => (state) =>
     _.map(state.store.measures[id], (measure) => measure.pcs).reduce((a, b) => a + b);
 export const getAddedMeasures = (id) => (state) =>
     _.map(state.store.measures[id], (measure) => measure.added).reduce((a, b) => a + b);
 export const totalProducts = (state) => _.map(state.store.items.byId).length;
+
+export const totalAddedProducts = (state) => {
+    const res = _.map(state.store.measures, (measures) => {
+        return _.map(measures, (measure) => {
+            return measure.added;
+        }).reduce((a, b) => a + b);
+    });
+    return res.reduce((a, b) => a + b);
+};
+
+export const totalPrice = (state) => {
+    const res = _.map(state.store.items.byId, (item, i) =>
+        _.map(state.store.measures[i], (id) => Object.assign({}, item, id)).flat()
+    )
+        .flat()
+        .map((item) => item.price * item.added)
+        .reduce((a, b) => a + b);
+    return res;
+};
+
+export const totalProductTypeAdded = (state) => {
+    let itemsIds = [];
+    Object.keys(state.store.measures).forEach((id) => {
+        Object.keys(state.store.measures[id]).forEach((size) => {
+            return state.store.measures[id][size].added > 0
+                ? itemsIds.findIndex((item) => item === id) < 0
+                    ? itemsIds.push(id)
+                    : null
+                : null;
+        });
+    });
+    return itemsIds.length;
+};

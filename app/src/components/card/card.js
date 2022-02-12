@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { StyledCard, Photo, Button, Title, Info, Price, Border, BlueCircle, RedCircle, Select } from "./card.styled";
 import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../redux/action/cartAction";
+import { addItem, operationHandler } from "../../redux/action/cartAction";
 import { useSelector } from "react-redux";
 import { getMeasures, getAddedMeasures, getPcsMeasures } from "../../redux/reducer/cartReducer";
+import { CartKeys } from "../../redux/type";
 function Card({ id, name, info, price, image }) {
     const measures = useSelector(getMeasures);
     const [val, setVal] = useState(-1);
@@ -13,9 +14,8 @@ function Card({ id, name, info, price, image }) {
     const added = useSelector(getAddedMeasures(id));
 
     useEffect(() => {}, [quantity, added, measures]);
-
     const add = useCallback(() => {
-        dispatch(addItem(id, val));
+        dispatch(operationHandler(CartKeys.ADD, id, val));
     }, [dispatch, id, val]);
 
     const measure = Object.keys(measures[id]).map((item) => {
@@ -80,27 +80,3 @@ function Card({ id, name, info, price, image }) {
 }
 
 export default Card;
-/* <BlueCircle>{chosen}</BlueCircle>
-            <RedCircle>LAST</RedCircle>
-            <Photo src={process.env.PUBLIC_URL + "/rb.png"} />
-            <Border />
-            <Title>{title}</Title>
-            <Info>{info}</Info>
-            <Price>Qty:{qty}</Price>
-            {qty === 1 ? <Price>last item</Price> : qty <= 3 ? <Price>3 left</Price> : ""}
-            <br></br>
-            <Price>Price: </Price>
-            <Price bold>{price}</Price>
-            <br></br>
-            <div>
-                <FormInput type="text" placeholder="Enter qty" />
-                {qty === 0 ? (
-                    <Button inactive> Add</Button>
-                ) : chosen > 0 ? (
-                    <Button inactive grey>
-                        Add
-                    </Button>
-                ) : (
-                    <Button>Add</Button>
-                )}
-            </div> */

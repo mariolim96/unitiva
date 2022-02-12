@@ -1,10 +1,23 @@
 import React from "react";
-import { FooterContainer, Info, TextWrapper, BackIcon, LeftButton, RightButton } from "./footer.styled";
+import {
+    FooterContainer,
+    Info,
+    TextWrapper,
+    BackIcon,
+    LeftButton,
+    ButtonContainer,
+    RightButton,
+    SideInfo,
+} from "./footer.styled";
 import Link from "../../routing/Link";
 import { useEffect } from "react";
-
+import { useSelector } from "react-redux";
+import { totalProductTypeAdded } from "../../redux/reducer/cartReducer";
 function Footer({ nextPage, prevPage, backButton, nextPageUrl, prevPageUrl }) {
-    useEffect(() => {}, [backButton]);
+    const totalAdded = useSelector(totalProductTypeAdded);
+    useEffect(() => {}, [backButton, totalAdded]);
+    console.log(totalAdded);
+
     return (
         <FooterContainer>
             <TextWrapper>
@@ -20,14 +33,21 @@ function Footer({ nextPage, prevPage, backButton, nextPageUrl, prevPageUrl }) {
                 ) : (
                     <div></div>
                 )}
-                <div>
-                    0 product chosen
-                    <Link href={nextPageUrl}>
-                        <RightButton>
+                <ButtonContainer>
+                    <SideInfo> {totalAdded} product chosen</SideInfo>
+
+                    {totalAdded > 0 ? (
+                        <Link href={nextPageUrl}>
+                            <RightButton>
+                                <Info>{nextPage}</Info>
+                            </RightButton>
+                        </Link>
+                    ) : (
+                        <RightButton disabled="true">
                             <Info>{nextPage}</Info>
                         </RightButton>
-                    </Link>
-                </div>
+                    )}
+                </ButtonContainer>
             </TextWrapper>
         </FooterContainer>
     );

@@ -4,7 +4,7 @@ import { Container } from "../../theme/global";
 export const ContainerCard = styled(Container)`
     ${Container}
     position: relative;
-    margin: 0px 52px;
+    margin: 0px 100px 80px 80px;
     /* margin-bottom: 96px; */
     display: inline-flex;
     flex-direction: row;

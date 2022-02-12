@@ -10,13 +10,26 @@ export const FooterContainer = styled.div`
     background-color: white;
     border-top: 1px solid ${(props) => props.theme.color.borderF};
 `;
-
+export const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+`;
 export const Info = styled.h4`
     font-family: ${(props) => props.theme.text.font.corporate};
     margin: auto auto;
     font-size: ${(props) => props.theme.text.size.medium};
     color: white;
     font-weight: 200;
+`;
+export const SideInfo = styled.h4`
+    display: inline-block;
+    font-family: ${(props) => props.theme.text.font.corporate};
+    color: ${(props) => props.theme.color.text5};
+    font-size: ${(props) => props.theme.text.size.medium};
+    font-weight: 200;
+    vertical-align: middle;
 `;
 
 export const BackIcon = styled(IoChevronBackCircleOutline)`
@@ -35,7 +48,6 @@ export const TextWrapper = styled.div`
     vertical-align: middle
     padding-left: ${(props) => props.padding};
     padding-bottom: ${(props) => props.padding};
-    
 `;
 
 export const LeftButton = styled(Span)`
@@ -51,8 +63,12 @@ export const LeftButton = styled(Span)`
     text-align: center;
     margin: auto  32px auto 8px;
     vertical-align: middle;
-    
 `;
 export const RightButton = styled(Button)`
     height: 36px;
+    margin-left: 16px;
+    &:disabled {
+        background-color: ${(props) => props.theme.color.buttonB};
+        cursor: not-allowed;
+    }
 `;

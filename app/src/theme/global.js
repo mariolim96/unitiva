@@ -2,30 +2,20 @@ import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 1168px;
+    max-width: 1168px;
     margin: 0 100px;
     padding: 0 20px;
+    margin-bottom: 80px;
 `;
 const GlobalStyles = createGlobalStyle`
     font-family: 'helvetica neue', sans-serif;
-    html {
-            ${
-                "" /* width: 100%;
-            box-sizing: border-box;
-            height: 100%; */
-            }
-        }
-
     body {
-        display: flex;
-        flex-direction: column;
         ${"" /* min-width: 100%; */}
-        
         /* max-height: 100%; */
         padding: 0;
         background: ${(props) => props.theme.color.body};
         margin: 0
-        
+        margin-bottom: 100px;
 
     }
 `;

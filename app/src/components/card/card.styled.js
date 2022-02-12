@@ -167,5 +167,8 @@ export const Select = styled.select`
         &.base:enabled {
             display: none;
         }
+        &:disabled {
+            background: ${(props) => props.theme.color.text5};
+        }
     }
 `;

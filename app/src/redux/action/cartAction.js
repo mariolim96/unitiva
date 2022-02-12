@@ -1,31 +1,25 @@
 import { CartKeys } from "../type";
 import _ from "lodash";
-export const addItem = (id, size) => {
-    return {
-        type: CartKeys.ADD,
-        payload: {
-            id,
-            size,
-        },
-    };
-};
 
-export const removeItem = (id, size) => {
+export const operationHandler = (type, id, size) => {
     return {
-        type: CartKeys.DELETE,
+        type: type,
         payload: {
             id,
             size,
         },
     };
 };
+//adding and removing items handler from cart
 
 export const clearItemCart = (measures) => {
     const clearMeasures = _.forEach(measures, (item) => {
         _.forEach(item, (size) => {
             size.added = 0;
-        })})
+        });
+    });
     return {
         type: CartKeys.CLEAR,
-        payload: clearMeasures,};
+        payload: clearMeasures,
+    };
 };
