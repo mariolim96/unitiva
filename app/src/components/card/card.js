@@ -11,7 +11,7 @@ function Card({ id, name, info, price, image }) {
     const dispatch = useDispatch();
     const quantity = useSelector(getPcsMeasures(id));
     const added = useSelector(getAddedMeasures(id));
-    console.log(measures[id]);
+
     useEffect(() => {}, [quantity, added, measures]);
 
     const add = useCallback(() => {

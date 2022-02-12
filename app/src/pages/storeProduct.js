@@ -6,6 +6,7 @@ import { ContainerCard } from "../components/cardCollection/cardCollection.style
 import { useSelector } from "react-redux";
 import { getItem } from "../redux/reducer/cartReducer.js";
 import { nanoid } from "nanoid";
+import { footerData } from "../data/footerData";
 const StoreProduct = () => {
     const items = useSelector(getItem);
     const itemCollection = Object.keys(items.byId).map((item) => {
@@ -15,7 +16,7 @@ const StoreProduct = () => {
         <>
             <Header />
             <ContainerCard>{itemCollection}</ContainerCard>
-            <Footer info="Go to Cart" />
+            <Footer {...footerData[0]} />
         </>
     );
 };

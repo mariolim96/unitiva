@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Container } from "../../global.js";
+import { Container } from "../../theme/global.js";
 export const Container1 = styled(Container)`
     padding: 0;
 `;

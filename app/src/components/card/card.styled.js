@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { Header3 } from "../../global";
+import { Header3 } from "../../theme/global";
 const lighten = (value) => styled.css`
     filter: brightness(${value + 1});
 `;

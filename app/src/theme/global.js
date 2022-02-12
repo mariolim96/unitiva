@@ -8,9 +8,25 @@ export const Container = styled.div`
 `;
 const GlobalStyles = createGlobalStyle`
     font-family: 'helvetica neue', sans-serif;
+    html {
+            ${
+                "" /* width: 100%;
+            box-sizing: border-box;
+            height: 100%; */
+            }
+        }
+
     body {
+        display: flex;
+        flex-direction: column;
+        ${"" /* min-width: 100%; */}
+        
+        /* max-height: 100%; */
+        padding: 0;
         background: ${(props) => props.theme.color.body};
-        margin: 20px;
+        margin: 0
+        
+
     }
 `;
 export const Button = styled.button`
@@ -19,16 +35,16 @@ export const Button = styled.button`
     overflow: hidden;
     outline: none;
     color: white;
-    border-radius: 5px;
+    border-radius: 4px;
     border: none;
     font-size: ${(props) => props.theme.text.size.small};
     font-family: ${(props) => props.theme.text.font.corporate};
     font-weight: 100;
     min-width: 106px;
     float: right;
-    padding: 6px 16px;
+    padding: 2px 16px;
     margin: 24px 32px;
-    height: 42px;
+    /* height: 42px; */
     background-color: ${(props) => props.theme.color.button};
     line-height: 1.5;
     cursor: pointer;
@@ -51,5 +67,10 @@ export const Header3 = styled.h3`
     color: ${(props) => props.theme.color.text1};
     font-weight: normal;
 `;
-
+export const Span = styled.span`
+    font-size: ${(props) => props.theme.text.size.medium};
+    font-family: ${(props) => props.theme.text.font.corporateB};
+    font-weight: 100;
+    margin: 0;
+`;
 export default GlobalStyles;
