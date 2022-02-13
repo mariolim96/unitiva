@@ -1,5 +1,5 @@
-import { CartKeys } from "../type";
-import _ from "lodash";
+import { CartKeys } from '../type';
+import _ from 'lodash';
 
 export const operationHandler = (type, id, size) => {
     return {
@@ -15,7 +15,6 @@ export const operationHandler = (type, id, size) => {
 export const clearItemCart = (measures) => {
     const clearMeasures = _.forEach(measures, (item) => {
         _.forEach(item, (size) => {
-            size.pcs = size.pcs - size.added;
             size.added = 0;
         });
     });
