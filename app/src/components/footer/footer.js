@@ -9,14 +9,15 @@ import {
     RightButton,
     SideInfo,
 } from "./footer.styled";
-import Link from "../../routing/Link";
+import Link, { history } from "../../routing/Link";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { totalProductTypeAdded } from "../../redux/reducer/cartReducer";
-function Footer({ nextPage, prevPage, backButton, nextPageUrl, prevPageUrl }) {
+function Footer({ nextPage, prevPage, backButton, nextPageUrl, prevPageUrl, sideInfo }) {
     const totalAdded = useSelector(totalProductTypeAdded);
-    useEffect(() => {}, [backButton, totalAdded]);
-    console.log(totalAdded);
+    var active = sideInfo ? (totalAdded > 0 ? false : true) : false;
+
+    useEffect(() => {}, [backButton, totalAdded, active]);
 
     return (
         <FooterContainer>
@@ -34,19 +35,15 @@ function Footer({ nextPage, prevPage, backButton, nextPageUrl, prevPageUrl }) {
                     <div></div>
                 )}
                 <ButtonContainer>
-                    <SideInfo> {totalAdded} product chosen</SideInfo>
-
-                    {totalAdded > 0 ? (
-                        <Link href={nextPageUrl}>
-                            <RightButton>
-                                <Info>{nextPage}</Info>
-                            </RightButton>
-                        </Link>
-                    ) : (
-                        <RightButton disabled="true">
-                            <Info>{nextPage}</Info>
-                        </RightButton>
-                    )}
+                    {sideInfo ? <SideInfo> {totalAdded} product chosen</SideInfo> : <div></div>}
+                    <RightButton
+                        disabled={active}
+                        onClick={() => {
+                            history(nextPageUrl);
+                        }}
+                    >
+                        <Info>{nextPage}</Info>
+                    </RightButton>
                 </ButtonContainer>
             </TextWrapper>
         </FooterContainer>

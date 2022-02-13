@@ -13,10 +13,9 @@ import {
     Header,
     TextWrapper,
 } from "./cart.styled";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMeasures, getItem, cart, totalPrice, totalAddedProducts } from "../../redux/reducer/cartReducer";
-import _ from "lodash";
+import { getMeasures, cart, totalPrice, totalAddedProducts } from "../../redux/reducer/cartReducer";
 import { nanoid } from "nanoid";
 import { IconArrow } from "./cart.styled";
 import { CartKeys } from "../../redux/type";

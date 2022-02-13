@@ -1,16 +1,26 @@
-export const footerData = [
+export const FooterData = [
     {
-        nextPage: "Checkout",
+        nextPage: "Go to cart",
         backButton: false,
-        prevPage: "Back",
-        nextPageUrl: "cart",
+        sideInfo: true,
+        prevPage: "",
+        nextPageUrl: "/cart",
         prevPageUrl: "",
     },
     {
         nextPage: "Checkout",
         prevPage: "Back",
-        nextPageUrl: "cart",
+        nextPageUrl: "/greetings",
         backButton: true,
+        sideInfo: true,
         prevPageUrl: "/",
+    },
+    {
+        nextPage: "Buy more",
+        prevPage: "Back",
+        nextPageUrl: "/",
+        backButton: false,
+        sideInfo: false,
+        prevPageUrl: "",
     },
 ];

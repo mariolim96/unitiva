@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Break, Nav, Container1, Logo, LeftHeader, RightHeader } from "./header.style";
-
-function Header() {
+import { useSelector } from "react-redux";
+import { totalAddedProducts, totalProducts } from "../../redux/reducer/cartReducer";
+function Header({ leftText, rightText, logoText }) {
+    const products = useSelector(leftText ? totalProducts : totalAddedProducts);
+    useEffect(() => {}, [products]);
     return (
         <>
             <Container1>
-                <Logo>STORE LOGO</Logo>
+                <Logo>{logoText}</Logo>
                 <Nav>
-                    <LeftHeader>LAST PRODUCT AVAILABLE</LeftHeader>
-                    <RightHeader>5 product available</RightHeader>
+                    <LeftHeader>{leftText}</LeftHeader>
+                    <RightHeader>
+                        {products}
+                        {rightText}
+                    </RightHeader>
                 </Nav>
                 <Break />
             </Container1>

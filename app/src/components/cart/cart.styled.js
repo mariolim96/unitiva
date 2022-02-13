@@ -24,9 +24,12 @@ export const CartGrid = styled.div`
     grid-gap: 0px;
     padding: 8px 30px 32px 30px;
     background: ${(props) => props.theme.color.card};
-    /* @media (max-width: 768px) {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    } */
+    @media (width: 768px) {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        overflow: scroll;
+        min-width: 0;
+        min-height: 0;
+    }
 `;
 export const CartItem = styled.div`
     display: inline;

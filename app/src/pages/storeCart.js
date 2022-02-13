@@ -2,17 +2,17 @@ import React from "react";
 import Footer from "../components/footer/footer";
 import Header from "../components/header/header";
 import Cart from "../components/cart/cart";
-import { footerData } from "../data/footerData";
-import { useEffect } from "react";
+import { HeaderData } from "../data/headerData";
+import { FooterData } from "../data/footerData";
 const StoreCart = () => {
     // useEffect(() => {
     //     refetchEvent()
     //    }, [])
     return (
         <>
-            <Header />
+            <Header {...HeaderData[1]}/>
             <Cart />
-            <Footer {...footerData[1]}></Footer>;
+            <Footer {...FooterData[1]}></Footer>;
         </>
     );
 };

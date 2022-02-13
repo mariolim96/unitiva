@@ -12,7 +12,7 @@ export const StyledCard = styled.div`
     border: 1px solid ${({ theme }) => theme.color.border};
     margin: 18px 20px;
     border-radius: 8px;
-    height: 230px;
+    min-height: 230px;
     position: relative;
     min-width: 174px;
     background-color: ${(props) => props.theme.color.card};
@@ -22,14 +22,14 @@ export const StyledCard = styled.div`
 `;
 export const Border = styled.div`
     width: 100%;
-    height: 0px;
+    min-height: 0px;
     border-top: 1px solid ${(props) => props.theme.color.border};
 `;
 export const Photo = styled.img`
     position: relative;
     border-radius: 8px;
     padding: 0;
-    height: 42%;
+    min-height: 42%;
     width: 100%;
     box-sizing: inherit;
     background-image: ${(props) => `url(${props.src})`};
@@ -74,7 +74,7 @@ export const Button = styled.button`
     min-width: 44px;
     float: right;
     margin: 6px 6px;
-    height: 24px;
+    min-height: 24px;
     background-color: ${(props) => props.theme.color.button};
     cursor: pointer;
     transition: all 0.5s;
@@ -96,7 +96,7 @@ export const FormInput = styled.input`
     display: inline-block;
     border-radius: 5px;
     margin: 6px 1px 6px 6px;
-    height: 22px;
+    min-height: 22px;
     width: 80px;
     padding: 0px 0px;
     border: 1px solid #cfcfcf;
@@ -110,7 +110,7 @@ export const FormInput = styled.input`
 
 export const Circle = styled.div`
     position: absolute;
-    height: 26px;
+    min-height: 26px;
     width: 26px;
     border-radius: 50%;
     z-index: 1;
@@ -150,7 +150,7 @@ export const Select = styled.select`
     color: gray;
     border-radius: 5px;
     margin: 6px 1px 6px 6px;
-    height: 22px;
+    min-height: 22px;
     width: 80px;
     padding: 0px 0px;
     border: 1px solid #cfcfcf;

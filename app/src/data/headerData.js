@@ -1,17 +1,17 @@
 export const HeaderData = [
     {
-        leftText: "",
-        rightText: "",
-        logoText: "",
+        leftText: "LAST PRODUCT AVAILABLE",
+        rightText: "product available",
+        logoText: "STORE LOGO",
+    },
+    {
+        leftText: "CART",
+        rightText: "product added",
+        logoText: "STORE LOGO",
     },
     {
         leftText: "",
         rightText: "",
-        logoText: "",
+        logoText: "STORE LOGO",
     },
-    {
-        leftText: "",
-        rightText: "",
-        logoText: "",
-    }
 ];

@@ -85,7 +85,7 @@ export default (state = Initial_State, action) => {
                     },
                 },
             };
-        //clearing all added values of measures to 0
+        //clearing all added measures and reduce the pcs to the initial state
         case CLEAR:
             return {
                 ...state,

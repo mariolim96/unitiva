@@ -65,7 +65,6 @@ export const LeftButton = styled(Span)`
     vertical-align: middle;
 `;
 export const RightButton = styled(Button)`
-    height: 36px;
     margin-left: 16px;
     &:disabled {
         background-color: ${(props) => props.theme.color.buttonB};

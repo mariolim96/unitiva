@@ -10,8 +10,6 @@ export const Container = styled.div`
 const GlobalStyles = createGlobalStyle`
     font-family: 'helvetica neue', sans-serif;
     body {
-        ${"" /* min-width: 100%; */}
-        /* max-height: 100%; */
         padding: 0;
         background: ${(props) => props.theme.color.body};
         margin: 0
@@ -30,11 +28,12 @@ export const Button = styled.button`
     font-size: ${(props) => props.theme.text.size.small};
     font-family: ${(props) => props.theme.text.font.corporate};
     font-weight: 100;
-    min-width: 106px;
+    width: 112px;
+    height: 36px;
     float: right;
     padding: 2px 16px;
     margin: 24px 32px;
-    /* height: 42px; */
+
     background-color: ${(props) => props.theme.color.button};
     line-height: 1.5;
     cursor: pointer;
