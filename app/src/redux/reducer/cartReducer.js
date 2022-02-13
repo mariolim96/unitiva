@@ -106,7 +106,7 @@ export const cart = (state) => {
 export const getCartTotal = (state) => state.store.total;
 export const getItem = (state) => state.store.items;
 export const getMeasures = (state) => state.store.measures;
-
+export const getAvailablePcs = (id, size) => (state) => state.store.measures[id][size].pcs;
 export const getPcsMeasures = (id) => (state) =>
     _.map(state.store.measures[id], (measure) => measure.pcs).reduce((a, b) => a + b);
 export const getAddedMeasures = (id) => (state) =>

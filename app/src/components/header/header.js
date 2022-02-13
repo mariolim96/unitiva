@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Break, Nav, Container1, Logo, LeftHeader, RightHeader } from "./header.style";
 import { useSelector } from "react-redux";
 import { totalAddedProducts, totalProducts } from "../../redux/reducer/cartReducer";
-function Header({ leftText, rightText, logoText }) {
-    const products = useSelector(leftText ? totalProducts : totalAddedProducts);
+function Header({ leftText, rightText, logoText, productsType }) {
+    const products = useSelector(productsType === "0" ? totalProducts : totalAddedProducts);
     useEffect(() => {}, [products]);
     return (
         <>
@@ -12,7 +12,7 @@ function Header({ leftText, rightText, logoText }) {
                 <Nav>
                     <LeftHeader>{leftText}</LeftHeader>
                     <RightHeader>
-                        {products}
+                        {products} &nbsp;
                         {rightText}
                     </RightHeader>
                 </Nav>

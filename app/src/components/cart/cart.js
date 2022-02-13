@@ -15,19 +15,21 @@ import {
 } from "./cart.styled";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMeasures, cart, totalPrice, totalAddedProducts } from "../../redux/reducer/cartReducer";
+import { getPcsMeasures, cart, totalPrice, totalAddedProducts } from "../../redux/reducer/cartReducer";
 import { nanoid } from "nanoid";
 import { IconArrow } from "./cart.styled";
 import { CartKeys } from "../../redux/type";
 import { operationHandler } from "../../redux/action/cartAction";
+import { cartCategories } from "../../data/cartCategories";
+import ButtonContainer from "./ButtonContainer";
 const Cart = () => {
     const dispatch = useDispatch();
     const cartItems = useSelector(cart);
     const price = useSelector(totalPrice);
     const totalProducts = useSelector(totalAddedProducts);
-    console.log(price);
-    useEffect(() => {}, [cartItems]);
-    const cartCategories = ["Model", "SKU", "Size", "Qty", "Price"].map((item, i) => {
+    const measures = useSelector(getPcsMeasures);
+
+    const titles = cartCategories.map((item, i) => {
         return (
             <CartItem key={item} title>
                 <CartItemTitles>{item}</CartItemTitles>
@@ -36,24 +38,17 @@ const Cart = () => {
         );
     });
     const lastRow = [...Array(5)].map(() => {
-        return <CartItem>{""} </CartItem>;
-    }); //                                      value    id
+        return <CartItem> </CartItem>;
+    });
     const cartItemsList = cartItems.map((item, i) => {
         return (
             <>
                 <CartItem key={nanoid()} id={item}>
                     <CartIteminfo>{item.name}</CartIteminfo>
-                    <TextButton
-                        mr
-                        data-id={i}
-                        onClick={(e) => {
-                            let idx = e.target.dataset.id;
-                            dispatch(operationHandler(CartKeys.DELETE, cartItems[idx].id, cartItems[idx].size));
-                        }}
-                    >
+                    <ButtonContainer id={item.id} size={item.size} type={CartKeys.DELETE}>
                         <RemoveIcon data-id={i} size={18} />
                         <CartItemLeftInfo data-id={i}>Remove</CartItemLeftInfo>
-                    </TextButton>
+                    </ButtonContainer>
                 </CartItem>
                 <CartItem>
                     <CartIteminfo>{item.info}</CartIteminfo>
@@ -62,19 +57,12 @@ const Cart = () => {
                     <CartIteminfo>{item.size}</CartIteminfo>
                 </CartItem>
                 <CartItem>
-                    <TextButton
-                        data-id={i}
-                        data-size={item.size}
-                        onClick={(e) => {
-                            let idx = e.target.getAttribute("data-id");
-                            dispatch(operationHandler(CartKeys.ADD, cartItems[idx].id, cartItems[idx].size));
-                        }}
-                    >
+                    <ButtonContainer id={item.id} size={item.size} type={CartKeys.ADD}>
                         <AddIcon size={18} data-id={i} />
                         <CartItemLeftInfo blue data-id={i}>
                             Add
                         </CartItemLeftInfo>
-                    </TextButton>
+                    </ButtonContainer>
                     <CartIteminfo>{item.added}</CartIteminfo>
                 </CartItem>
                 <CartItem>
@@ -84,11 +72,12 @@ const Cart = () => {
             </>
         );
     });
+    useEffect(() => {}, [cartItems]);
     return (
         <CartContainer>
             <Header>Your cart contains:</Header>
             <CartGrid>
-                {cartCategories}
+                {titles}
                 {cartItemsList}
                 {lastRow}
             </CartGrid>

@@ -99,7 +99,7 @@ export const CartIteminfo = styled(span)`
 `;
 export const CartItemLeftInfo = styled(span)`
     font-family: ${(props) => props.theme.text.font.corporate};
-    color: ${(props) => (props.blue ? props.theme.color.button : (props) => props.theme.color.text3)};
+    color: ${(props) => (props.blue ? props.theme.color.button : (props) => props.theme.color.text2)};
     font-size: ${(props) => props.theme.text.size.hmedium};
     float: right;
     font-weight: bold;
