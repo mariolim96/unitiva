@@ -55,6 +55,7 @@ export const Header3 = styled.h3`
     font-size: ${(props) => props.theme.text.size.medium};
     color: ${(props) => props.theme.color.text1};
     font-weight: normal;
+    
 `;
 export const Span = styled.span`
     font-size: ${(props) => props.theme.text.size.medium};

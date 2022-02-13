@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Container } from "../../theme/global";
-import { Header3 } from "../../theme/global";
-import { RiArrowUpDownLine } from "react-icons/ri";
-import { IoMdRemoveCircleOutline, IoIosAddCircleOutline } from "react-icons/io";
+import styled from 'styled-components';
+import { Container } from '../../theme/global';
+import { Header3 } from '../../theme/global';
+import { RiArrowUpDownLine } from 'react-icons/ri';
+import { IoMdRemoveCircleOutline, IoIosAddCircleOutline } from 'react-icons/io';
 export const CartContainer = styled(Container)`
     background: white;
     border-left: 1px solid ${(props) => props.theme.color.border};
@@ -22,31 +22,36 @@ export const CartGrid = styled.div`
     grid-gap: 0px;
     padding: 8px 30px 32px 30px;
     background: ${(props) => props.theme.color.card};
-    @media (width: 768px) {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        overflow: scroll;
+    @media (max-width: 612px) {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        overflow: hidden;
         min-width: 0;
         min-height: 0;
+        padding-left: auto;
     }
 `;
 export const CartItem = styled.div`
     display: inline;
     border-bottom: 2px solid ${(props) => props.theme.color.border};
     border-right: 2px solid ${(props) => props.theme.color.border};
-    padding: ${(props) => (props.title ? "8px " : "18px 8px")};
+    padding: ${(props) => (props.title ? '8px ' : '18px 8px')};
     padding-left: 16px;
+    @media (min-width: 612px) {
     &:nth-child(5n) {
         border-right: none;
     }
     &:nth-last-child(-n + 5) {
         border-bottom: none;
-    }
+    }}
     &:nth-last-child(5n + 5) {
         padding-left:8px ;
 `;
 export const Header = styled(Header3)`
     font-size: ${(props) => props.theme.text.size.huge};
     padding: 20px 0px 0px 30px;
+    @media (min-width: 612px) {
+        font-size: ${(props) => props.theme.text.size.huge};
+    }
 `;
 
 export const span = styled.span`
@@ -54,6 +59,9 @@ export const span = styled.span`
     font-family: ${(props) => props.theme.text.font.corporateB};
     font-weight: 100;
     margin: 0;
+    @media (min-width: 612px) {
+        margin
+    }
 `;
 export const TextWrapper = styled.div`
     box-sizing: content-box;
@@ -67,6 +75,11 @@ export const TextWrapper = styled.div`
     text-align: left;
     padding-left: ${(props) => props.padding};
     padding-bottom: ${(props) => props.padding};
+    @media (max-width: 612px) {
+        margin: auto;
+        padding: 4px;
+        width: auto;
+    }
 `;
 
 export const Header4 = styled.h4`
@@ -75,12 +88,17 @@ export const Header4 = styled.h4`
     color: ${(props) => props.theme.color.text1};
     font-size: ${(props) => props.theme.text.size.large};
     font-family: ${(props) => (props.bold ? props.theme.text.font.corporateB : props.theme.text.font.corporate)};
-    /* font-weight: ${(props) => (props.bold ? "bold" : "normal")}; */
+    /* font-weight: ${(props) => (props.bold ? 'bold' : 'normal')}; */
     font-weight: 100;
     text-decoration-line: underline;
     text-decoration-color: ${(props) => (props.dGrey ? props.theme.color.text3 : props.theme.color.text5)};
     text-decoration-style: solid
     text-decoration-thickness:3px;
+    @media (max-width: 612px) {
+        font-size: ${(props) => props.theme.text.size.medium};
+        width:auto;
+        height:auto;
+    }
     
 `;
 export const CartItemTitles = styled(span)`
@@ -129,6 +147,6 @@ export const TextButton = styled.button`
     }
     margin: 0;
     padding: 0;
-    margin-right: ${(props) => (props.mr ? "8px" : "2px")};} ;
+    margin-right: ${(props) => (props.mr ? '8px' : '2px')};} ;
     float: right;
 `;
