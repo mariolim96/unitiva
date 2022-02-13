@@ -5,14 +5,12 @@ import { RiArrowUpDownLine } from "react-icons/ri";
 import { IoMdRemoveCircleOutline, IoIosAddCircleOutline } from "react-icons/io";
 export const CartContainer = styled(Container)`
     background: white;
-
     border-left: 1px solid ${(props) => props.theme.color.border};
     border-right: 2px solid ${(props) => props.theme.color.border};
     border-bottom: 1px solid ${(props) => props.theme.color.border};
     border-top: 1px solid ${(props) => props.theme.color.border};
     border-radius: 8px;
     margin: 20px 100px 80px 100px;
-
     padding: 0px 1px;
     box-sizing: border-box;
     overflow: hidden;

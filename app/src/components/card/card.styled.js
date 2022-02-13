@@ -4,11 +4,11 @@ import { Header3 } from '../../theme/global';
 export const StyledCard = styled.div`
     display: inline-block;
     border: 1px solid ${({ theme }) => theme.color.border};
-    margin: 18px 20px;
+    margin: 18px 8px;
     border-radius: 8px;
-    min-height: 230px;
+    height: 230px;
     position: relative;
-    min-width: 174px;
+    width: 174px;
     background-color: ${(props) => props.theme.color.card};
     @media (max-width: 524px) {
         margin-right: auto;
