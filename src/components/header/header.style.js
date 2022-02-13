@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Container } from "../../theme/global.js";
+import { Container } from '../../theme/global.js';
 export const Container1 = styled(Container)`
     padding: 0;
     margin: 0 100px;
@@ -47,7 +47,7 @@ export const RightHeader = styled.h6`
     font-family: ${(props) => props.theme.text.font.corporate};
     color: ${(props) => props.theme.color.righth};
     margin: 0 0 0 8px;
-    font-size: ${(props) => props.theme.text.size.small};
+    font-size: ${(props) => props.theme.text.size.hmedium};
     font-weight: normal;
     @media (max-width: 524px) {
         font-size: ${(props) => props.theme.text.size.tiny};
