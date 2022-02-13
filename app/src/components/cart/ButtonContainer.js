@@ -23,36 +23,6 @@ function ButtonContainer(props) {
             {props.children}
         </TextButton>
     );
-    return (
-        <>
-            {props.type === CartKeys.ADD ? (
-                availablePcs > 0 ? (
-                    <TextButton
-                        mr
-                        data-id={props.id}
-                        onClick={(e) => {
-                            let idx = e.target.dataset.id;
-                            dispatch(operationHandler(props.type, cartItems[idx].id, cartItems[idx].size));
-                        }}
-                    >
-                        {props.children}
-                    </TextButton>
-                ) : (
-                    <div></div>
-                )
-            ) : (
-                <TextButton
-                    mr
-                    data-id={props.id}
-                    onClick={(e) => {
-                        let idx = e.target.dataset.id;
-                        dispatch(operationHandler(props.type, cartItems[idx].id, cartItems[idx].size));
-                    }}
-                >
-                    {props.children}
-                </TextButton>
-            )}
-        </>
-    );
+    return <>{props.type === CartKeys.ADD ? availablePcs > 0 ? button : <div></div> : button}</>;
 }
 export default ButtonContainer;

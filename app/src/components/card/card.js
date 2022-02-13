@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyledCard, Photo, Button, Title, Info, Price, Border, BlueCircle, RedCircle, Select } from "./card.styled";
 import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { addItem, operationHandler } from "../../redux/action/cartAction";
+import { operationHandler } from "../../redux/action/cartAction";
 import { useSelector } from "react-redux";
 import { getMeasures, getAddedMeasures, getPcsMeasures } from "../../redux/reducer/cartReducer";
 import { CartKeys } from "../../redux/type";

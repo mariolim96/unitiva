@@ -1,12 +1,6 @@
-import styled, { keyframes } from "styled-components";
-import { Header3 } from "../../theme/global";
-const lighten = (value) => styled.css`
-    filter: brightness(${value + 1});
-`;
+import styled, { keyframes } from 'styled-components';
+import { Header3 } from '../../theme/global';
 
-const darken = (value) => styled.css`
-    filter: brightness(${1 - value});
-`;
 export const StyledCard = styled.div`
     display: inline-block;
     border: 1px solid ${({ theme }) => theme.color.border};
@@ -57,7 +51,7 @@ export const Price = styled.h5`
     font-size: ${(props) => (props.tiny ? props.theme.text.size.tiny : props.theme.text.size.small)};
     font-family: ${(props) => props.theme.text.font.corporate};
     color: ${(props) => (props.red ? props.theme.color.text2 : props.theme.color.text3)};
-    font-weight: ${(props) => (props.bold ? "900" : "normal")};
+    font-weight: ${(props) => (props.bold ? '900' : 'normal')};
 `;
 export const Button = styled.button`
     position: relative;

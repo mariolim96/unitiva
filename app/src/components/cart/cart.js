@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
     CartContainer,
     CartGrid,
@@ -7,33 +7,29 @@ import {
     CartItemLeftInfo,
     AddIcon,
     RemoveIcon,
-    TextButton,
     Header4,
     CartItemTitles,
     Header,
     TextWrapper,
-} from "./cart.styled";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPcsMeasures, cart, totalPrice, totalAddedProducts } from "../../redux/reducer/cartReducer";
-import { nanoid } from "nanoid";
-import { IconArrow } from "./cart.styled";
-import { CartKeys } from "../../redux/type";
-import { operationHandler } from "../../redux/action/cartAction";
-import { cartCategories } from "../../data/cartCategories";
-import ButtonContainer from "./ButtonContainer";
+} from './cart.styled';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { cart, totalPrice, totalAddedProducts } from '../../redux/reducer/cartReducer';
+import { nanoid } from 'nanoid';
+import { IconArrow } from './cart.styled';
+import { CartKeys } from '../../redux/type';
+import { cartCategories } from '../../data/cartCategories';
+import ButtonContainer from './ButtonContainer';
 const Cart = () => {
-    const dispatch = useDispatch();
     const cartItems = useSelector(cart);
     const price = useSelector(totalPrice);
     const totalProducts = useSelector(totalAddedProducts);
-    const measures = useSelector(getPcsMeasures);
 
     const titles = cartCategories.map((item, i) => {
         return (
             <CartItem key={item} title>
                 <CartItemTitles>{item}</CartItemTitles>
-                {i === 0 || i === 4 ? <IconArrow size={22} /> : ""}
+                {i === 0 || i === 4 ? <IconArrow size={22} /> : ''}
             </CartItem>
         );
     });
@@ -85,7 +81,7 @@ const Cart = () => {
                 <Header4>Total pieces:&nbsp;&nbsp;</Header4>
                 <Header4 bold>{totalProducts}</Header4>
             </TextWrapper>
-            <TextWrapper clear="right" padding="36px">
+            <TextWrapper clear='right' padding='36px'>
                 <Header4 dGrey>Price: &nbsp; </Header4>
                 <Header4 bold dGrey>
                     {price}
